@@ -1,4 +1,4 @@
-const imageProcessorsTypeMatch = {
+export const imageProcessorsRecord = {
   OPENCV: 'opencv',
   GOOGLE_VISION: 'googleVision',
   AWS_TEXTRACT: 'awsTextract',
