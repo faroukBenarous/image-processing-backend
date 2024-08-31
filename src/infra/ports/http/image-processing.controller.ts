@@ -1,30 +1,31 @@
 import {
-  Body,
-  Controller,
-  Get,
-  Inject,
-  Logger,
-  UploadedFile,
-  UseInterceptors,
+    Body,
+    Controller,
+    Get,
+    Inject,
+    Logger,
+    UploadedFile,
+    UseInterceptors,
 } from '@nestjs/common';
-import { Express } from 'express';
-import { SampleDto } from './dto';
-import { ImageProcessingWorkflow } from '../../../application/image-processing.workflow';
-import {FileUploadInterceptor} from "./interceptors/file.interceptor";
+import {FileRequest, ImageDetailsResponse, SampleDto} from './dto';
+import {ImageProcessingWorkflow} from '../../../application/image-processing.workflow';
+import {FileValidationInterceptor} from "./interceptors/file.interceptor";
+import {multerOptions} from "./interceptors/file.interceptor.config";
 
 @Controller('image-processor')
 export class ImageProcessingController {
-  private logger: Logger = new Logger(ImageProcessingController.name);
+    private logger: Logger = new Logger(ImageProcessingController.name);
 
-  constructor(@Inject() imageProcessingWorkflow: ImageProcessingWorkflow) {}
+    constructor(private readonly imageProcessingWorkflow: ImageProcessingWorkflow) {}
 
-  @UseInterceptors(FileUploadInterceptor)
-  @Get('/passport')
-  processPassport(
-    @Body() body: SampleDto,
-    @UploadedFile() file: Express.Multer.File,
-  ) {
-    this.logger.log(`processImage file name ${body.name}`);
-    return file.buffer.toString();
-  }
+    @UseInterceptors(new FileValidationInterceptor(multerOptions))
+    @Get('/passport')
+    processPassport(
+        @Body() body: SampleDto,
+        @UploadedFile() file: FileRequest,
+    ): Promise<ImageDetailsResponse> {
+        this.logger.log(`processImage file name ${body.name}`);
+        const response = this.imageProcessingWorkflow.extractDetailsFromPassport(file)
+        return response
+    }
 }

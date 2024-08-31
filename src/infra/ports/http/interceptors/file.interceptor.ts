@@ -1,17 +1,15 @@
-import {BadRequestException} from '@nestjs/common';
+import {BadRequestException, CallHandler, ExecutionContext, Injectable, Type} from '@nestjs/common';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {NestInterceptor} from '@nestjs/common/interfaces/features/nest-interceptor.interface';
+import {MulterOptions} from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
+import {Observable} from "rxjs";
 
-export const multerOptions = {
-    limits: {fileSize: 5000_000},
-    fileFilter: (req, file, cb) => {
-        if (!file.originalname.match(/\.(png)$/)) {
-            return cb(new BadRequestException('Only PNG files are allowed!'), false);
-        }
-        cb(null, true);
-    },
-};
+@Injectable()
+export class FileValidationInterceptor implements NestInterceptor {
+    constructor(private readonly options: MulterOptions) {}
 
-// Export a custom file upload interceptor
-export const FileUploadInterceptor = (): NestInterceptor =>
-    FileInterceptor('file', multerOptions);
+    intercept(context: ExecutionContext, next: CallHandler) {
+        const fileInterceptor = new (FileInterceptor('file', this.options))();
+        return fileInterceptor.intercept(context, next);
+    }
+}

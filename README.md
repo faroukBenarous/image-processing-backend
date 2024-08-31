@@ -4,12 +4,17 @@
 * An API that takes an image of a passport and extract key information and returns it in response
 
 ## How to use
-
+* yarn install 
+* copy .env.example to -env file 
+* provide all necessary envs
+* yarn start
+* curl 
 
 ## Libraries
 * Nestjs for the project
 * opencv for image processing
-
+* aws textract
+* google vision
 
 
 ## Useful links
