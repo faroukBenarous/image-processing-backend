@@ -8,9 +8,9 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { Express } from 'express';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { SampleDto } from './dto';
 import { ImageProcessingWorkflow } from '../../../application/image-processing.workflow';
+import {FileUploadInterceptor} from "./interceptors/file.interceptor";
 
 @Controller('image-processor')
 export class ImageProcessingController {
@@ -18,7 +18,7 @@ export class ImageProcessingController {
 
   constructor(@Inject() imageProcessingWorkflow: ImageProcessingWorkflow) {}
 
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileUploadInterceptor)
   @Get('/passport')
   processPassport(
     @Body() body: SampleDto,
