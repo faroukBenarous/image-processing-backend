@@ -5,5 +5,5 @@ export class EnvVariables {
   PROVIDER: string;
 
   @IsNotEmpty()
-  HTTP_PORT: string
+  HTTP_PORT: string;
 }

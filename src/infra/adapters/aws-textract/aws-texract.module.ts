@@ -1,1 +1,1 @@
-export class AwsTexractModule{}
+export class AwsTexractModule {}

@@ -1,13 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import {Logger, Module} from "@nestjs/common";
-import {ConfigModule, ConfigService} from "@nestjs/config";
-import {AppWithoutConfigModule} from "./app.module";
+import { Logger, Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AppWithoutConfigModule } from './app.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    AppWithoutConfigModule,
-  ],
+  imports: [ConfigModule.forRoot(), AppWithoutConfigModule],
   providers: [ConfigService],
   exports: [ConfigService],
 })
