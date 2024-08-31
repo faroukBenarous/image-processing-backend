@@ -1,5 +1,3 @@
-// import {FileRequest} from "../../infra/ports/http/dto";
-import {Express} from "express";
 import {FileRequest} from "../../infra/ports/http/dto";
 
 export interface ImageProcessingService {
@@ -8,8 +6,13 @@ export interface ImageProcessingService {
 
 
 export interface ImageDetails {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
+  middleName?: string
+  idType?: string
+  placeOfBirth?: string;
+  dateOfIssue?: string;
+  documentNumber?: string
   expiryDate: string;
   dateOfBirth: string;
 }

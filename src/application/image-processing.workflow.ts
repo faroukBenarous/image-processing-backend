@@ -20,7 +20,7 @@ export class ImageProcessingWorkflow {
     public async extractDetailsFromPassport(fileImage: FileRequest): Promise<ImageDetails> {
         this.logger.log(`Extracting details from passport using ${this.imageExtractor.constructor.name}`)
         const response = await this.imageExtractor.extractImageDetails(fileImage)
-        return {dateOfBirth: "", expiryDate: "", firstName: "", lastName: ""}
+        return response
     }
 
 }

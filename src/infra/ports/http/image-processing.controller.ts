@@ -25,7 +25,6 @@ export class ImageProcessingController {
         @UploadedFile() file: FileRequest,
     ): Promise<ImageDetailsResponse> {
         this.logger.log(`processImage file name ${body.name}`);
-        const response = this.imageProcessingWorkflow.extractDetailsFromPassport(file)
-        return response
+        return this.imageProcessingWorkflow.extractDetailsFromPassport(file)
     }
 }
