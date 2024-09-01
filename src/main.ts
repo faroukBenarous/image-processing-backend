@@ -14,7 +14,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get<ConfigService>(ConfigService);
   const httpPort = configService.getOrThrow<number>('HTTP_PORT');
-
+  app.enableCors();
   app.enableShutdownHooks();
 
   logger.log(`Starting HTTP service [${httpPort}]...`);

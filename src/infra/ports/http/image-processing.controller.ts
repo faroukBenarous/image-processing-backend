@@ -1,8 +1,7 @@
 import {
     Body,
     Controller,
-    Get,
-    Inject,
+    Post,
     Logger,
     UploadedFile,
     UseInterceptors,
@@ -19,7 +18,7 @@ export class ImageProcessingController {
     constructor(private readonly imageProcessingWorkflow: ImageProcessingWorkflow) {}
 
     @UseInterceptors(new FileValidationInterceptor(multerOptions))
-    @Get('/passport')
+    @Post('/passport')
     processPassport(
         @Body() body: SampleDto,
         @UploadedFile() file: FileRequest,

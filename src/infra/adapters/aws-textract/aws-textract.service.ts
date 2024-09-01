@@ -52,7 +52,6 @@ export class AwsTextractService implements ImageProcessingService {
                 fieldValueAccuracy: x.ValueDetection.Confidence
             }
             // TODO: filter fields with low accuracy
-            this.logger.debug({field})
             if (fieldMapping[field.fieldKey]) {
                 const mappedKey = fieldMapping[field.fieldKey];
                 response[mappedKey] = field.convertedValue || field.fieldValue;

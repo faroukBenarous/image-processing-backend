@@ -3,9 +3,7 @@ import {ImageDetails, ImageProcessingService} from '../domain/services/image-pro
 import {ImageProcessors} from '../domain/provider';
 import {ImageExtractionFactory} from "./image-extraction.factory";
 import {ConfigService} from "@nestjs/config";
-import {Express} from "express";
 import {FileRequest} from "../infra/ports/http/dto";
-// import {FileRequest} from "../infra/ports/http/dto";
 
 @Injectable()
 export class ImageProcessingWorkflow {
@@ -20,6 +18,7 @@ export class ImageProcessingWorkflow {
     public async extractDetailsFromPassport(fileImage: FileRequest): Promise<ImageDetails> {
         this.logger.log(`Extracting details from passport using ${this.imageExtractor.constructor.name}`)
         const response = await this.imageExtractor.extractImageDetails(fileImage)
+        this.logger.log(`Response passport using ${response}`)
         return response
     }
 

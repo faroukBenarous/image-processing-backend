@@ -8,7 +8,7 @@
 * copy .env.example to -env file 
 * provide all necessary envs
 * yarn start
-* `` curl --location --request GET 'http://localhost:3000/image-processor/passport' \
+* `` curl --location --request POST 'http://localhost:3000/image-processor/passport' \
   --form 'file=@"passport_us.png"' ``
 
 ## Libraries
