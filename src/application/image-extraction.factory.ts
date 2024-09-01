@@ -3,11 +3,13 @@ import {ImageProcessors, imageProcessorsRecord} from "../domain/provider";
 import {AwsTextractService} from "../infra/adapters/aws-textract/aws-textract.service";
 import {ModuleRef} from "@nestjs/core";
 import {ImageProcessingService} from "../domain/services/image-processing.service";
+import {TesseractService} from "../infra/adapters/tesseract/tesseract.service";
 
 @Injectable()
 export class ImageExtractionFactory {
   private adapterMapping = {
     [ImageProcessors.AWS_TEXTRACT]: AwsTextractService,
+    [ImageProcessors.TESSERACT]: TesseractService,
   };
 
   constructor(private moduleRef: ModuleRef) {}

@@ -1,11 +1,9 @@
 export const imageProcessorsRecord = {
-  OPENCV: 'opencv',
-  GOOGLE_VISION: 'googleVision',
-  AWS_TEXTRACT: 'awsTextract',
+    AWS_TEXTRACT: 'awsTextract',
+    TESSERACT: 'tesseract'
 };
 
 export enum ImageProcessors {
-  OPENCV = 'opencv',
-  GOOGLE_VISION = 'googleVision',
-  AWS_TEXTRACT = 'awsTextract',
+    AWS_TEXTRACT = 'awsTextract',
+    TESSERACT = 'tesseract'
 }
